@@ -10,7 +10,7 @@ public class Controller {
 	
 	@GetMapping("/date")
 	public String getDate(  ) {
-		String response = "Nous sommes le "+ new Date();
+		String response = "Date du jour : "+ new Date();
 		return response;
 	}
 
