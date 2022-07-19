@@ -10,7 +10,7 @@ public class Controller {
 	
 	@GetMapping("/date")
 	public String getDate(  ) {
-		String response = " Source responds with "+ new Date();
+		String response = " Service Indisponible ";
 		return response;
 	}
 
