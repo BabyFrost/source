@@ -8,12 +8,6 @@ pipeline {
 	            bat "mvn clean verify sonar:sonar -Dsonar.projectKey=source"
 	        }	
   		}
-  		
-  		stage("SonarQube Analysis") {
-			steps {
-	            bat "mvn clean verify sonar:sonar"
-	        }	
-  		}
 	
 	    stage( "Build" ) {
 	        steps {
