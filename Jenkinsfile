@@ -33,7 +33,7 @@ pipeline {
 	            	script {
   						try {
   							bat "kubectl set image deployment/source-deployment source=127.0.0.1:5000/voufi/source:${BUILD_NUMBER} --record"
-  							bat "kubectl apply -f config.yaml"
+//  							bat "kubectl apply -f config.yaml"
   						} catch (Exception e) {
   							bat "kubectl apply -f config.yaml"
   						}
