@@ -3,6 +3,18 @@ pipeline {
 	
 	stages {
 	
+		stage("SonarQube Analysis") {
+			steps {
+	            bat "mvn clean verify sonar:sonar -Dsonar.projectKey=source"
+	        }	
+  		}
+  		
+  		stage("SonarQube Analysis") {
+			steps {
+	            bat "mvn clean verify sonar:sonar"
+	        }	
+  		}
+	
 	    stage( "Build" ) {
 	        steps {
 	            bat "mvn clean package"
@@ -27,9 +39,9 @@ pipeline {
 	            	script {
   						try {
   							bat "kubectl set image deployment/source-deployment source=127.0.0.1:5000/voufi/source:${BUILD_NUMBER} --record"
+  							bat "kubectl apply -f config.yaml"
   						} catch (Exception e) {
-  							bat "kubectl create deployment source-deployment --image=127.0.0.1:5000/voufi/source:${BUILD_NUMBER} --replicas=1"
-  							bat "kubectl expose deployment source-deployment --type=LoadBalancer --name=source-service --port=8088"
+  							bat "kubectl apply -f config.yaml"
   						}
 					}
     			}

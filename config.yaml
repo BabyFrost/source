@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: source-deployment
+  labels:
+    app: source
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: source
+  template:
+    metadata:
+      labels:
+        app: source
+    spec:
+      containers:
+      - name: source
+        image: localhost:5000/voufi/source:3
+        ports:
+        - containerPort: 8087
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: source-service
+spec:
+  selector:
+    app: source
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8088
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: source-service-configmap
+data:
+  service_url: source-service
