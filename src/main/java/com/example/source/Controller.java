@@ -1,7 +1,5 @@
 package com.example.source;
 
-import java.util.Date;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +10,11 @@ public class Controller {
 	public String getDate(  ) {
 		String response = " Service Indisponible ";
 		return response;
+	}
+	
+	@GetMapping("/**")
+	public String redirectToGetDate(  ) {
+		return "Hello world";
 	}
 
 }
